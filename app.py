@@ -3,8 +3,12 @@ Machine Learning Web Application
 - Part 1: Medical Insurance Cost Prediction (Regression Model)
 - Part 2: Thai Character Classifier (Image Classification Model)
 
-Author: Sakonlaphat (Student ID: 6630300866)
-Course: Machine Learning / Data Science Project (Kasetsart University)
+Authors:
+1. 6630300866 นาย สกลภัทร ภิญโญ
+2. 6730300281 นาย นันทพัฒน์ วรรณลักษณ์
+3. 6730300591 นาย ศุภวิชญ์ ไชยานุศักดิ์
+4. 6730300779 นาย ธรรศธรณ์ เจียมตน
+5. 6730300850 นาย พัฒนเดช มะหิเมือง
 """
 
 from pathlib import Path
@@ -67,20 +71,20 @@ def predict_insurance(age, sex, bmi, children, smoker, region):
     risk_factors = []
 
     if smoker == "yes":
-        risk_factors.append("⚠️ **มีประวัติสูบบุหรี่:** เป็นปัจจัยหลักที่ทำให้เบี้ยประกันสูงขึ้น 3-4 เท่า")
+        risk_factors.append("- **มีประวัติสูบบุหรี่:** เป็นปัจจัยหลักที่ทำให้เบี้ยประกันสูงขึ้น 3-4 เท่า")
     else:
-        risk_factors.append("✅ **ไม่สูบบุหรี่:** อัตราเบี้ยประกันอยู่ในเกณฑ์ความเสี่ยงต่ำ")
+        risk_factors.append("- **ไม่สูบบุหรี่:** อัตราเบี้ยประกันอยู่ในเกณฑ์ความเสี่ยงต่ำ")
 
     if bmi >= 30.0:
-        risk_factors.append(f"⚠️ **BMI {bmi:.1f} ({bmi_status}):** เพิ่มความเสี่ยงโรคหัวใจและหลอดเลือด")
+        risk_factors.append(f"- **BMI {bmi:.1f} ({bmi_status}):** เพิ่มความเสี่ยงโรคหัวใจและหลอดเลือด")
     else:
-        risk_factors.append(f"✅ **BMI {bmi:.1f} ({bmi_status}):** อยู่ในเกณฑ์ความเสี่ยงปกติ")
+        risk_factors.append(f"- **BMI {bmi:.1f} ({bmi_status}):** อยู่ในเกณฑ์ความเสี่ยงปกติ")
 
     if age >= 50:
-        risk_factors.append(f"ℹ️ **อายุ {age} ปี:** เบี้ยประกันปรับเพิ่มตามความเสี่ยงด้านอายุ")
+        risk_factors.append(f"- **อายุ {age} ปี:** เบี้ยประกันปรับเพิ่มตามความเสี่ยงด้านอายุ")
 
     risk_summary = "\n\n".join(risk_factors)
-    result_header = f"### 💵 ค่าเบี้ยประกันสุขภาพรายปีที่คาดการณ์:\n## **{pred_thb:,.2f} บาท**\n*(เทียบเท่าประมาณ **${pred_usd:,.2f} USD** @ 35 บาท/USD)*"
+    result_header = f"### ค่าเบี้ยประกันสุขภาพรายปีที่คาดการณ์:\n## **{pred_thb:,.2f} บาท**\n*(เทียบเท่าประมาณ **${pred_usd:,.2f} USD** @ 35 บาท/USD)*"
 
     return result_header, bmi_status, risk_summary
 
@@ -121,8 +125,8 @@ def predict_sketch_or_image(image):
 with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft()) as app:
     gr.HTML("""
     <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%); color: white; padding: 22px 28px; border-radius: 12px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-        <h1 style="color: white; margin: 0 0 6px 0; font-size: 26px; font-weight: 700;">🚀 Machine Learning Web Application</h1>
-        <p style="color: #bfdbfe; margin: 8px 0 0 0; font-size: 13px;"><b>กลุ่มผู้จัดทำ (ภาควิชาวิศวกรรมคอมพิวเตอร์ / วิทยาการคอมพิวเตอร์ มหาวิทยาลัยเกษตรศาสตร์):</b><br>
+        <h1 style="color: white; margin: 0 0 6px 0; font-size: 26px; font-weight: 700;">Machine Learning Web Application</h1>
+        <p style="color: #bfdbfe; margin: 8px 0 0 0; font-size: 13px;"><b>กลุ่มผู้จัดทำ:</b><br>
         6630300866 นาย สกลภัทร ภิญโญ • 6730300281 นาย นันทพัฒน์ วรรณลักษณ์ • 6730300591 นาย ศุภวิชญ์ ไชยานุศักดิ์<br>
         6730300779 นาย ธรรศธรณ์ เจียมตน • 6730300850 นาย พัฒนเดช มะหิเมือง</p>
     </div>
@@ -132,13 +136,13 @@ with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft())
         # ==========================================
         # TAB 1: REGRESSION MODEL
         # ==========================================
-        with gr.TabItem("📈 1. Regression Model (ทำนายค่าเบี้ยประกันสุขภาพ)"):
-            gr.Markdown("### 🏥 ระบบทำนายค่าใช้จ่ายเบี้ยประกันสุขภาพรายปี (Medical Insurance Cost Prediction)")
+        with gr.TabItem("1. Regression Model (ทำนายค่าเบี้ยประกันสุขภาพ)"):
+            gr.Markdown("### ระบบทำนายค่าใช้จ่ายเบี้ยประกันสุขภาพรายปี (Medical Insurance Cost Prediction)")
             gr.Markdown("ทำนายค่าเบี้ยประกันสุขภาพรายบุคคลจากปัจจัยชีววิทยาและพฤติกรรม ด้วยแบบจำลอง **Gradient Boosting Regressor ($R^2 = 87.92%$)**")
 
             with gr.Row():
                 with gr.Column(scale=1):
-                    gr.Markdown("#### 📋 กรอกข้อมูลส่วนบุคคลของผู้เอาประกัน")
+                    gr.Markdown("#### กรอกข้อมูลส่วนบุคคลของผู้เอาประกัน")
                     reg_age = gr.Slider(minimum=18, maximum=80, value=30, step=1, label="อายุ (Age: ปี)")
                     reg_sex = gr.Radio(choices=["male", "female"], value="male", label="เพศสภาพ (Sex)")
                     reg_bmi = gr.Slider(minimum=15.0, maximum=55.0, value=25.0, step=0.1, label="ดัชนีมวลกาย (BMI: kg/m²)")
@@ -149,10 +153,10 @@ with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft())
                         value="southwest",
                         label="ภูมิภาคที่อยู่อาศัย (Region)"
                     )
-                    reg_btn = gr.Button("🔮 คำนวณเบี้ยประกันสุขภาพ (Predict)", variant="primary", size="lg")
+                    reg_btn = gr.Button("คำนวณเบี้ยประกันสุขภาพ (Predict)", variant="primary", size="lg")
 
                 with gr.Column(scale=1):
-                    gr.Markdown("#### 📊 ผลการทำนายและวิเคราะห์ความเสี่ยง")
+                    gr.Markdown("#### ผลการทำนายและวิเคราะห์ความเสี่ยง")
                     reg_out_charges = gr.Markdown(value="*กรุณากดปุ่มเพื่อดูผลการทำนาย*")
                     reg_out_bmi_cat = gr.Textbox(label="การประเมินดัชนีมวลกาย (BMI Category)", interactive=False)
                     reg_out_risk = gr.Markdown(label="ปัจจัยที่มีผลต่ออัตราเบี้ยประกัน")
@@ -164,7 +168,7 @@ with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft())
             )
 
             gr.Markdown("---")
-            gr.Markdown("#### 💡 ตัวอย่างข้อมูลนำเข้าสำหรับทดสอบ (Examples Presets)")
+            gr.Markdown("#### ตัวอย่างข้อมูลนำเข้าสำหรับทดสอบ (Examples Presets)")
             gr.Examples(
                 examples=[
                     [19, "female", 22.5, 0, "no", "southwest"],
@@ -181,8 +185,8 @@ with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft())
         # ==========================================
         # TAB 2: IMAGE CLASSIFICATION MODEL
         # ==========================================
-        with gr.TabItem("✍️ 2. Image Classification Model (จำแนกพยัญชนะไทย ก - ฮ)"):
-            gr.Markdown("### 🇹🇭 ระบบจำแนกพยัญชนะภาษาไทย 44 รูป (Thai Character Classifier)")
+        with gr.TabItem("2. Image Classification Model (จำแนกพยัญชนะไทย ก - ฮ)"):
+            gr.Markdown("### ระบบจำแนกพยัญชนะภาษาไทย 44 รูป (Thai Character Classifier)")
             gr.Markdown("จำแนกตัวอักษรไทยทั้งจากภาพถ่ายและลายมือเขียน ด้วยแบบจำลอง **Deep CNN (Test Accuracy 99.14%, Macro F1 0.9912)**")
 
             with gr.Row():
@@ -222,7 +226,7 @@ with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft())
 
     gr.HTML("""
     <div style="text-align: center; margin-top: 30px; padding: 16px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 13px;">
-        Machine Learning Final Project | มหาวิทยาลัยเกษตรศาสตร์ | พัฒนาด้วย Scikit-Learn, PyTorch และ Gradio
+        Machine Learning Final Project | พัฒนาด้วย Scikit-Learn, PyTorch และ Gradio
     </div>
     """)
 

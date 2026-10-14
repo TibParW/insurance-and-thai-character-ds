@@ -28,7 +28,7 @@ EXCHANGE_RATE = 35.0  # อัตราแลกเปลี่ยน 35 บา�
 
 def main():
     print("=" * 65)
-    print("  🏥 Medical Insurance Cost Prediction - Training Pipeline (THB)")
+    print("  Medical Insurance Cost Prediction - Training Pipeline (THB)")
     print("=" * 65)
 
     data_path = os.path.join("data", "insurance.csv")
@@ -108,7 +108,7 @@ def main():
             best_pipe = pipe
 
     print("-" * 75)
-    print(f"🏆 Best Model: {best_name} (R2 = {best_r2:.4f})")
+    print(f"Best Model: {best_name} (R2 = {best_r2:.4f})")
 
     # 6. Save Best Model
     os.makedirs("models", exist_ok=True)
@@ -127,7 +127,7 @@ def main():
             "all_results": results
         }, f, indent=2, ensure_ascii=False)
     print(f"[5] Saved evaluation metrics to: {metrics_path}")
-    print("\n✅ Training and evaluation completed successfully!\n")
+    print("\nTraining and evaluation completed successfully!\n")
 
 if __name__ == "__main__":
     main()
