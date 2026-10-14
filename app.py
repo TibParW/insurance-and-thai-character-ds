@@ -65,12 +65,11 @@ def predict_insurance(age, sex, bmi, children, smoker, region):
 
     pred_thb = insurance_pipeline.predict(input_df)[0]
     pred_thb = max(0.0, float(pred_thb))
-    pred_usd = pred_thb / 35.0  # อัตราแลกเปลี่ยนเทียบเท่า 35 บาท / USD
 
     bmi_status = calculate_bmi_category(bmi)
     risk_factors = []
 
-    if smoker == "yes":
+    if smoker == "สูบบุหรี่":
         risk_factors.append("- **มีประวัติสูบบุหรี่:** เป็นปัจจัยหลักที่ทำให้เบี้ยประกันสูงขึ้น 3-4 เท่า")
     else:
         risk_factors.append("- **ไม่สูบบุหรี่:** อัตราเบี้ยประกันอยู่ในเกณฑ์ความเสี่ยงต่ำ")
@@ -84,7 +83,7 @@ def predict_insurance(age, sex, bmi, children, smoker, region):
         risk_factors.append(f"- **อายุ {age} ปี:** เบี้ยประกันปรับเพิ่มตามความเสี่ยงด้านอายุ")
 
     risk_summary = "\n\n".join(risk_factors)
-    result_header = f"### ค่าเบี้ยประกันสุขภาพรายปีที่คาดการณ์:\n## **{pred_thb:,.2f} บาท**\n*(เทียบเท่าประมาณ **${pred_usd:,.2f} USD** @ 35 บาท/USD)*"
+    result_header = f"### ค่าเบี้ยประกันสุขภาพรายปีที่คาดการณ์:\n## **{pred_thb:,.2f} บาท**"
 
     return result_header, bmi_status, risk_summary
 
@@ -155,15 +154,15 @@ with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft())
             with gr.Row():
                 with gr.Column(scale=1):
                     gr.Markdown("#### กรอกข้อมูลส่วนบุคคลของผู้เอาประกัน")
-                    reg_age = gr.Slider(minimum=18, maximum=80, value=30, step=1, label="อายุ (Age: ปี)")
-                    reg_sex = gr.Radio(choices=["male", "female"], value="male", label="เพศสภาพ (Sex)")
+                    reg_age = gr.Slider(minimum=18, maximum=80, value=30, step=1, label="อายุ (ปี)")
+                    reg_sex = gr.Radio(choices=["ชาย", "หญิง"], value="ชาย", label="เพศสภาพ")
                     reg_bmi = gr.Slider(minimum=15.0, maximum=55.0, value=25.0, step=0.1, label="ดัชนีมวลกาย (BMI: kg/m²)")
-                    reg_children = gr.Slider(minimum=0, maximum=5, value=0, step=1, label="จำนวนบุตร / ผู้อยู่ในความอุปการะ (Children)")
-                    reg_smoker = gr.Radio(choices=["no", "yes"], value="no", label="ประวัติการสูบบุหรี่ (Smoker)")
+                    reg_children = gr.Slider(minimum=0, maximum=5, value=0, step=1, label="จำนวนบุตร / ผู้อยู่ในความอุปการะ (คน)")
+                    reg_smoker = gr.Radio(choices=["ไม่สูบบุหรี่", "สูบบุหรี่"], value="ไม่สูบบุหรี่", label="ประวัติการสูบบุหรี่")
                     reg_region = gr.Dropdown(
-                        choices=["northeast", "northwest", "southeast", "southwest"],
-                        value="southwest",
-                        label="ภูมิภาคที่อยู่อาศัย (Region)"
+                        choices=["ภาคกลาง", "ภาคเหนือ", "ภาคตะวันออกเฉียงเหนือ", "ภาคใต้"],
+                        value="ภาคกลาง",
+                        label="ภูมิภาคที่อยู่อาศัยในประเทศไทย"
                     )
                     reg_btn = gr.Button("คำนวณเบี้ยประกันสุขภาพ (Predict)", variant="primary", size="lg")
 
@@ -183,10 +182,10 @@ with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft())
             gr.Markdown("#### ตัวอย่างข้อมูลนำเข้าสำหรับทดสอบ (Examples Presets)")
             gr.Examples(
                 examples=[
-                    [19, "female", 22.5, 0, "no", "southwest"],
-                    [38, "male", 28.0, 2, "no", "northwest"],
-                    [45, "male", 35.5, 1, "yes", "southeast"],
-                    [60, "female", 26.0, 0, "no", "northeast"]
+                    [19, "หญิง", 22.5, 0, "ไม่สูบบุหรี่", "ภาคกลาง"],
+                    [38, "ชาย", 28.0, 2, "ไม่สูบบุหรี่", "ภาคเหนือ"],
+                    [45, "ชาย", 35.5, 1, "สูบบุหรี่", "ภาคตะวันออกเฉียงเหนือ"],
+                    [60, "หญิง", 26.0, 0, "ไม่สูบบุหรี่", "ภาคใต้"]
                 ],
                 inputs=[reg_age, reg_sex, reg_bmi, reg_children, reg_smoker, reg_region],
                 outputs=[reg_out_charges, reg_out_bmi_cat, reg_out_risk],

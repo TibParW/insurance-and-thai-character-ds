@@ -35,17 +35,18 @@ def main():
     if not os.path.exists(data_path):
         raise FileNotFoundError(f"Dataset not found at {data_path}")
 
-    # 1. Load Dataset & Convert Currency to THB (บาท)
+    # 1. Load Dataset (Thai Health Insurance Data in THB)
     df = pd.read_csv(data_path)
-    df["charges_thb"] = (df["charges"] * EXCHANGE_RATE).round(2)
+    if df["charges"].mean() < 100000:
+        df["charges"] = (df["charges"] * EXCHANGE_RATE).round(2)
+
     print(f"\n[1] Dataset loaded successfully: {df.shape[0]} rows, {df.shape[1]} columns")
     print(f"    Features: {df.columns.tolist()[:6]}")
-    print(f"    Target: charges_thb (ค่าเบี้ยประกันสุขภาพรายปี มีหน่วยเป็น บาท THB)")
-    print(f"    อัตราแลกเปลี่ยนอ้างอิง: 1 USD = {EXCHANGE_RATE} บาท")
+    print(f"    Target: charges (ค่าเบี้ยประกันสุขภาพรายปี มีหน่วยเป็น บาท THB)")
 
     # 2. Train-Test Split (80:20)
-    X = df.drop(columns=["charges", "charges_thb"])
-    y = df["charges_thb"]
+    X = df.drop(columns=["charges"])
+    y = df["charges"]
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.20, random_state=42
