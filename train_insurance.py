@@ -1,7 +1,7 @@
 """
-Medical Insurance Cost Prediction - Training & Evaluation Script
+Medical Insurance Cost Prediction - Training & Evaluation Script (THB Currency)
 Course: Machine Learning / Data Science
-Author: Sakonlaphat (6630300866)
+Author: Sakonlaphat (6630300866) and Group Members
 """
 
 import os
@@ -24,24 +24,28 @@ from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 
+EXCHANGE_RATE = 35.0  # อัตราแลกเปลี่ยน 35 บาทต่อ 1 ดอลลาร์สหรัฐ
+
 def main():
     print("=" * 65)
-    print("  🏥 Medical Insurance Cost Prediction - Training Pipeline")
+    print("  🏥 Medical Insurance Cost Prediction - Training Pipeline (THB)")
     print("=" * 65)
 
     data_path = os.path.join("data", "insurance.csv")
     if not os.path.exists(data_path):
         raise FileNotFoundError(f"Dataset not found at {data_path}")
 
-    # 1. Load Dataset
+    # 1. Load Dataset & Convert Currency to THB (บาท)
     df = pd.read_csv(data_path)
+    df["charges_thb"] = (df["charges"] * EXCHANGE_RATE).round(2)
     print(f"\n[1] Dataset loaded successfully: {df.shape[0]} rows, {df.shape[1]} columns")
-    print(f"    Features: {df.columns.tolist()[:-1]}")
-    print(f"    Target: {df.columns.tolist()[-1]} (Annual charges in USD)")
+    print(f"    Features: {df.columns.tolist()[:6]}")
+    print(f"    Target: charges_thb (ค่าเบี้ยประกันสุขภาพรายปี มีหน่วยเป็น บาท THB)")
+    print(f"    อัตราแลกเปลี่ยนอ้างอิง: 1 USD = {EXCHANGE_RATE} บาท")
 
     # 2. Train-Test Split (80:20)
-    X = df.drop(columns=["charges"])
-    y = df["charges"]
+    X = df.drop(columns=["charges", "charges_thb"])
+    y = df["charges_thb"]
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.20, random_state=42
@@ -73,9 +77,9 @@ def main():
 
     # 5. Training and Evaluation
     print(f"\n[3] Model Training and Evaluation on Hidden Test Set:")
-    print("-" * 65)
-    print(f"{'Model':<22} | {'R2 Score':<10} | {'RMSE (USD)':<14} | {'MAE (USD)':<12}")
-    print("-" * 65)
+    print("-" * 75)
+    print(f"{'Model':<22} | {'R2 Score':<10} | {'RMSE (บาท)':<18} | {'MAE (บาท)':<16}")
+    print("-" * 75)
 
     best_name = None
     best_pipe = None
@@ -95,31 +99,33 @@ def main():
         rmse = np.sqrt(mean_squared_error(y_test, y_pred))
         mae = mean_absolute_error(y_test, y_pred)
 
-        results[name] = {"R2": round(r2, 4), "RMSE": round(rmse, 2), "MAE": round(mae, 2)}
-        print(f"{name:<22} | {r2:.4f}     | ${rmse:,.2f}      | ${mae:,.2f}")
+        results[name] = {"R2": round(r2, 4), "RMSE_THB": round(rmse, 2), "MAE_THB": round(mae, 2)}
+        print(f"{name:<22} | {r2:.4f}     | {rmse:>14,.2f} บาท | {mae:>12,.2f} บาท")
 
         if r2 > best_r2:
             best_r2 = r2
             best_name = name
             best_pipe = pipe
 
-    print("-" * 65)
+    print("-" * 75)
     print(f"🏆 Best Model: {best_name} (R2 = {best_r2:.4f})")
 
     # 6. Save Best Model
     os.makedirs("models", exist_ok=True)
     model_path = os.path.join("models", "insurance_model.joblib")
     joblib.dump(best_pipe, model_path)
-    print(f"\n[4] Saved best pipeline model to: {model_path}")
+    print(f"\n[4] Saved best pipeline model (predicts THB) to: {model_path}")
 
     # 7. Save Metrics Summary
-    metrics_path = os.path.join("models", "evaluation_metrics.json")
+    metrics_path = os.path.join("models", "insurance_evaluation_metrics.json")
     with open(metrics_path, "w", encoding="utf-8") as f:
         json.dump({
+            "target_currency": "THB",
+            "exchange_rate": EXCHANGE_RATE,
             "best_model": best_name,
             "best_r2": best_r2,
             "all_results": results
-        }, f, indent=2)
+        }, f, indent=2, ensure_ascii=False)
     print(f"[5] Saved evaluation metrics to: {metrics_path}")
     print("\n✅ Training and evaluation completed successfully!\n")
 

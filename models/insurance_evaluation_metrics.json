@@ -1,26 +1,28 @@
 {
+  "target_currency": "THB",
+  "exchange_rate": 35.0,
   "best_model": "Gradient Boosting",
-  "best_r2": 0.8791672491881917,
+  "best_r2": 0.8791672489285153,
   "all_results": {
     "Linear Regression": {
       "R2": 0.7836,
-      "RMSE": 5796.28,
-      "MAE": 4181.19
+      "RMSE_THB": 202869.96,
+      "MAE_THB": 146341.81
     },
     "Ridge Regression": {
       "R2": 0.7833,
-      "RMSE": 5800.46,
-      "MAE": 4193.2
+      "RMSE_THB": 203016.27,
+      "MAE_THB": 146761.84
     },
     "Random Forest": {
-      "R2": 0.8712,
-      "RMSE": 4471.97,
-      "MAE": 2553.28
+      "R2": 0.8714,
+      "RMSE_THB": 156357.49,
+      "MAE_THB": 89263.19
     },
     "Gradient Boosting": {
       "R2": 0.8792,
-      "RMSE": 4331.18,
-      "MAE": 2446.2
+      "RMSE_THB": 151591.35,
+      "MAE_THB": 85617.1
     }
   }
 }

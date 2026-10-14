@@ -58,9 +58,9 @@ def predict_insurance(age, sex, bmi, children, smoker, region):
         "region": str(region)
     }])
 
-    pred_usd = insurance_pipeline.predict(input_df)[0]
-    pred_usd = max(0.0, float(pred_usd))
-    pred_thb = pred_usd * 35.0  # อัตราแลกเปลี่ยนโดยประมาณ 35 THB/USD
+    pred_thb = insurance_pipeline.predict(input_df)[0]
+    pred_thb = max(0.0, float(pred_thb))
+    pred_usd = pred_thb / 35.0  # อัตราแลกเปลี่ยนเทียบเท่า 35 บาท / USD
 
     bmi_status = calculate_bmi_category(bmi)
     risk_factors = []
@@ -79,7 +79,7 @@ def predict_insurance(age, sex, bmi, children, smoker, region):
         risk_factors.append(f"ℹ️ **อายุ {age} ปี:** เบี้ยประกันปรับเพิ่มตามความเสี่ยงด้านอายุ")
 
     risk_summary = "\n\n".join(risk_factors)
-    result_header = f"### 💵 ค่าเบี้ยประกันสุขภาพรายปีที่คาดการณ์:\n## **${pred_usd:,.2f} USD**\n*(คิดเป็นประมาณ **{pred_thb:,.2f} บาท**)*"
+    result_header = f"### 💵 ค่าเบี้ยประกันสุขภาพรายปีที่คาดการณ์:\n## **{pred_thb:,.2f} บาท**\n*(เทียบเท่าประมาณ **${pred_usd:,.2f} USD** @ 35 บาท/USD)*"
 
     return result_header, bmi_status, risk_summary
 
