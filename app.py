@@ -116,6 +116,12 @@ def predict_sketch_or_image(image):
         if comp is None:
             raise gr.Error("กรุณาวาดตัวอักษรไทยก่อนกดวิเคราะห์")
         image = comp
+    if isinstance(image, np.ndarray):
+        if image.ndim == 3 and image.shape[2] == 4:
+            if np.max(image[:, :, 3]) == 0:
+                raise gr.Error("กรุณาวาดตัวอักษรไทยก่อนกดวิเคราะห์")
+        elif np.std(image) < 0.5:
+            raise gr.Error("กรุณาวาดตัวอักษรไทยก่อนกดวิเคราะห์")
     return thai_predictor.predict(image)
 
 
@@ -124,12 +130,18 @@ def predict_sketch_or_image(image):
 # ============================================================
 with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft()) as app:
     gr.HTML("""
-    <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%); color: white; padding: 22px 28px; border-radius: 12px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-        <h1 style="color: white; margin: 0 0 6px 0; font-size: 26px; font-weight: 700;">Machine Learning Web Application</h1>
-        <p style="color: #bfdbfe; margin: 8px 0 0 0; font-size: 13px;"><b>กลุ่มผู้จัดทำ:</b><br>
-        6630300866 นาย สกลภัทร ภิญโญ • 6730300281 นาย นันทพัฒน์ วรรณลักษณ์ • 6730300591 นาย ศุภวิชญ์ ไชยานุศักดิ์<br>
-        6730300779 นาย ธรรศธรณ์ เจียมตน • 6730300850 นาย พัฒนเดช มะหิเมือง</p>
-    </div>
+    <style>
+    .sketch-container {
+        border: 2px solid #cbd5e1 !important;
+        border-radius: 12px !important;
+        background-color: #ffffff !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+        padding: 4px !important;
+    }
+    .sketch-container canvas {
+        cursor: crosshair !important;
+    }
+    </style>
     """)
 
     with gr.Tabs() as main_tabs:
@@ -187,32 +199,52 @@ with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft())
         # ==========================================
         with gr.TabItem("2. Image Classification Model (จำแนกพยัญชนะไทย ก - ฮ)"):
             gr.Markdown("### ระบบจำแนกพยัญชนะภาษาไทย 44 รูป (Thai Character Classifier)")
-            gr.Markdown("จำแนกตัวอักษรไทยทั้งจากภาพถ่ายและลายมือเขียน ด้วยแบบจำลอง **Deep CNN (Test Accuracy 99.14%, Macro F1 0.9912)**")
+            gr.Markdown("จำแนกตัวอักษรไทยทั้งจากลายมือเขียนและภาพถ่าย ด้วยแบบจำลอง **Deep CNN (Test Accuracy 99.14%, Macro F1 0.9912)**")
 
             with gr.Row():
                 with gr.Column(scale=1):
                     with gr.Tabs():
+                        with gr.TabItem("วาดเขียนด้วยลายมือ (Drawing Canvas)"):
+                            gr.Markdown("**วาดพยัญชนะไทย 1 ตัวอักษรลงในกรอบด้านล่าง:**")
+                            img_sketch = gr.Sketchpad(
+                                label="กระดานวาดเขียน (Drawing Pad)",
+                                type="numpy",
+                                canvas_size=(360, 360),
+                                height=380,
+                                fixed_canvas=True,
+                                layers=False,
+                                brush=gr.Brush(default_size=18, colors=["#000000"], default_color="#000000", color_mode="fixed"),
+                                eraser=gr.Eraser(default_size=28),
+                                elem_classes=["sketch-container"]
+                            )
+                            with gr.Row():
+                                img_sketch_btn = gr.Button("วิเคราะห์ภาพที่วาด (Predict Drawing)", variant="primary", scale=2, size="lg")
+                                img_sketch_clear_btn = gr.Button("ล้างกระดาน (Clear)", variant="secondary", scale=1, size="lg")
+                            gr.Markdown("*คำแนะนำ: วาดพยัญชนะขนาดใหญ่พอดีกรอบ ลากเส้นให้ชัดเจน*")
+
                         with gr.TabItem("อัปโหลดรูปภาพ (Upload Image)"):
                             img_upload = gr.Image(type="numpy", label="อัปโหลดรูปภาพพยัญชนะไทย")
                             img_upload_btn = gr.Button("วิเคราะห์ภาพที่อัปโหลด (Predict)", variant="primary", size="lg")
 
-                        with gr.TabItem("วาดเขียนด้วยลายมือ (Drawing Canvas)"):
-                            img_sketch = gr.Sketchpad(type="numpy", label="วาดพยัญชนะไทยด้วยลายมือ")
-                            img_sketch_btn = gr.Button("วิเคราะห์ภาพที่วาด (Predict Drawing)", variant="primary", size="lg")
-
                 with gr.Column(scale=1):
-                    img_output_label = gr.Label(num_top_classes=5, label="Prediction (ผลการทำนาย 5 อันดับแรก)")
-                    img_output_preview = gr.Image(type="numpy", label="Processed 28 × 28 image (ภาพหลังทำ Preprocessing)", height=280)
-
-            img_upload_btn.click(
-                fn=thai_predictor.predict,
-                inputs=img_upload,
-                outputs=[img_output_label, img_output_preview]
-            )
+                    img_output_label = gr.Label(num_top_classes=5, label="ผลการทำนาย 5 อันดับแรก (Top-5 Predictions)")
+                    img_output_preview = gr.Image(type="numpy", label="ภาพหลังทำ Preprocessing (28 × 28 พิกเซล)", height=280)
 
             img_sketch_btn.click(
                 fn=predict_sketch_or_image,
                 inputs=img_sketch,
+                outputs=[img_output_label, img_output_preview]
+            )
+
+            img_sketch_clear_btn.click(
+                fn=lambda: None,
+                inputs=None,
+                outputs=img_sketch
+            )
+
+            img_upload_btn.click(
+                fn=thai_predictor.predict,
+                inputs=img_upload,
                 outputs=[img_output_label, img_output_preview]
             )
 
@@ -223,12 +255,6 @@ with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft())
                     inputs=img_upload,
                     label="ชุดภาพตัวอย่างสำหรับทดสอบ (Sample Test Images)"
                 )
-
-    gr.HTML("""
-    <div style="text-align: center; margin-top: 30px; padding: 16px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 13px;">
-        Machine Learning Final Project | พัฒนาด้วย Scikit-Learn, PyTorch และ Gradio
-    </div>
-    """)
 
 
 if __name__ == "__main__":
