@@ -21,10 +21,11 @@ try:
 except Exception:
     pass
 
+BASE_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(BASE_DIR / "src"))
+
 from cnn_model import ThaiCNNPredictor
 from preprocessing import _to_pil_image
-
-BASE_DIR = Path(__file__).resolve().parent
 
 # ============================================================
 # 1. Load Regression Model (Medical Insurance Cost)

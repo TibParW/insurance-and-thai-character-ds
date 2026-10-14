@@ -149,24 +149,31 @@ python app.py
 ```text
 thai_character_classifier_read/
 │
-├── data/
+├── data/                                  # โฟลเดอร์ชุดข้อมูลสำหรับฝึกและทดสอบ
 │   ├── insurance.csv                      # [Regression] ชุดข้อมูลค่าใช้จ่ายสุขภาพ (1,338 ตัวอย่าง)
 │   └── thai_characters/                   # [Classification] ชุดข้อมูลพยัญชนะไทย 44 คลาส (22,000 ภาพ)
 │
-├── models/
+├── models/                                # ไฟล์โมเดลที่บันทึกไว้สำหรับนำไปใช้งาน
 │   ├── insurance_model.joblib             # [Regression] โมเดล Gradient Boosting Pipeline (R² = 87.9%)
 │   ├── thai_cnn_classifier.pt             # [Classification] โมเดล Deep CNN PyTorch (Accuracy = 99.1%)
 │   └── thai_character_classifier.joblib   # [Classification] โมเดล Random Forest Baseline
 │
+├── notebooks/                             # โฟลเดอร์รวม Jupyter Notebooks ทั้งสองเล่ม
+│   ├── insurance_cost_regression.ipynb    # [Regression] Notebook แสดงกระบวนการทั้งหมด
+│   └── thai_character_classification.ipynb# [Classification] Notebook แสดงกระบวนการทั้งหมด
+│
+├── src/                                   # โฟลเดอร์รวมซอร์สโค้ดและโมดูลย่อยทั้งหมด
+│   ├── cnn_model.py                       # สถาปัตยกรรมโครงข่ายประสาทเทียม CNN
+│   ├── preprocessing.py                   # ขั้นตอนการจัดเตรียมและแปลงภาพ 28x28
+│   ├── labels.py                          # กำหนดค่า Label ภาษาไทย 44 พยัญชนะ
+│   ├── inference.py                       # โมดูลทำนายผลลัพธ์
+│   ├── train_insurance.py                 # สคริปต์ฝึกสอนโมเดล Regression (บาท THB)
+│   ├── train_cnn.py                       # สคริปต์ฝึกสอนโมเดล Deep CNN
+│   └── train_model.py                     # สคริปต์ฝึกสอนโมเดล Baseline
+│
+├── fonts/                                 # ฟอนต์พยัญชนะไทยสำหรับ Data Augmentation
 ├── test_images/                           # ภาพตัวอย่างสำหรับทดสอบแอปพลิเคชัน
-├── app.py                                 # ซอร์สโค้ด Gradio 2-in-1 Web Application
-├── insurance_cost_regression.ipynb        # [Regression] Jupyter Notebook แสดงกระบวนการทั้งหมด
-├── thai_character_classification.ipynb    # [Classification] Jupyter Notebook แสดงกระบวนการทั้งหมด
-├── train_insurance.py                     # สคริปต์ฝึกสอนโมเดล Regression
-├── train_cnn.py                           # สคริปต์ฝึกสอนโมเดล Deep CNN
-├── cnn_model.py                           # สถาปัตยกรรมโครงข่ายประสาทเทียม CNN
-├── preprocessing.py                       # ขั้นตอนการจัดเตรียมและแปลงภาพ 28x28
-├── labels.py                              # กำหนดค่า Label ภาษาไทย 44 พยัญชนะ
+├── app.py                                 # ซอร์สโค้ด Gradio 2-in-1 Web Application (หน้าเว็บหลัก)
 ├── render.yaml                            # ไฟล์การตั้งค่า Deployment บน Render Cloud
 ├── requirements.txt                       # รายการไลบรารีที่จำเป็นทั้งหมด
 └── README.md                              # เอกสารสรุปโครงการฉบับสมบูรณ์
