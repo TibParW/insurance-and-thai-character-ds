@@ -144,20 +144,20 @@ python app.py
 ```text
 insurance-and-thai-character-ds/
 ├── data/
-│   ├── insurance.csv                      : ข้อมูลเบี้ยประกันสุขภาพ คปภ. (1,500 รายการ)
-│   └── thai_characters/                   : ข้อมูลภาพพยัญชนะไทย 44 คลาส (22,000 ภาพ)
+│   ├── insurance.csv                       : ข้อมูลเบี้ยประกันสุขภาพ คปภ. (1,500 รายการ)
+│   └── thai_characters/                    : ข้อมูลภาพพยัญชนะไทย 44 คลาส (22,000 ภาพ)
 ├── models/
-│   ├── insurance_model.joblib             : โมเดล Gradient Boosting Pipeline (R² = 96.5%)
-│   ├── thai_cnn_classifier.pt             : โมเดล Deep CNN PyTorch (Accuracy = 99.1%)
-│   └── thai_character_classifier.joblib   : โมเดล Random Forest Baseline
+│   ├── insurance_model.joblib              : โมเดล Gradient Boosting Pipeline (R² = 96.5%)
+│   ├── thai_cnn_classifier.pt              : โมเดล Deep CNN PyTorch (Accuracy = 99.1%)
+│   └── thai_character_classifier.joblib    : โมเดล Random Forest Baseline
 ├── notebooks/
-│   ├── insurance_cost_regression.ipynb    : สมุดโค้ดวิเคราะห์และสร้างโมเดล Regression
+│   ├── insurance_cost_regression.ipynb     : สมุดโค้ดวิเคราะห์และสร้างโมเดล Regression
 │   └── thai_character_classification.ipynb : สมุดโค้ดวิเคราะห์และสร้างโมเดล Classification
-├── src/                                   : ซอร์สโค้ดและโมดูลประมวลผลระบบ
-├── fonts/                                 : ฟอนต์ตัวอักษรไทยสำหรับ Data Augmentation
-├── test_images/                           : ภาพตัวอย่างสำหรับทดสอบระบบ
-├── app.py                                 : ซอร์สโค้ดหลักของ Web Application (Gradio)
-├── render.yaml                            : ไฟล์ตั้งค่า Deployment บน Render Cloud
-├── requirements.txt                       : รายการไลบรารีที่จำเป็นทั้งหมด
-└── README.md                              : เอกสารสรุปโครงการฉบับสมบูรณ์
+├── src/                                    : ซอร์สโค้ดและโมดูลประมวลผลระบบ
+├── fonts/                                  : ฟอนต์ตัวอักษรไทยสำหรับ Data Augmentation
+├── test_images/                            : ภาพตัวอย่างสำหรับทดสอบระบบ
+├── app.py                                  : ซอร์สโค้ดหลักของ Web Application (Gradio)
+├── render.yaml                             : ไฟล์ตั้งค่า Deployment บน Render Cloud
+├── requirements.txt                        : รายการไลบรารีที่จำเป็นทั้งหมด
+└── README.md                               : เอกสารสรุปโครงการฉบับสมบูรณ์
 ```
