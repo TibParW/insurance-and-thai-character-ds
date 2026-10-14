@@ -21,6 +21,9 @@
 
 * **Live Web Application (Render):** [https://insurance-and-thai-character-ds.onrender.com](https://insurance-and-thai-character-ds.onrender.com)
 * **GitHub Repository:** [https://github.com/TibParW/insurance-and-thai-character-ds](https://github.com/TibParW/insurance-and-thai-character-ds)
+* **Google Colab Notebooks (คลิกเปิดรันบนคลาวด์ได้ทันที):**
+  * **Regression Model Notebook:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TibParW/insurance-and-thai-character-ds/blob/main/notebooks/insurance_cost_regression.ipynb)
+  * **Image Classification Model Notebook:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TibParW/insurance-and-thai-character-ds/blob/main/notebooks/thai_character_classification.ipynb)
 
 ---
 
@@ -63,6 +66,7 @@
 * **ข้อจำกัดของแบบจำลอง (Model Limitations):**
   * อิงตามปัจจัยพื้นฐาน 6 ด้านตามเกณฑ์มาตรฐาน แต่ในการพิจารณาประกันจริงอาจมีปัจจัยเชิงลึก เช่น โรคประจำตัวเรื้อรัง (NCDs) หรือประวัติพันธุกรรม
   * เหมาะสำหรับผู้เอาประกันภัยช่วงอายุ 18 - 80 ปี โดยไม่ครอบคลุมกลุ่มประกันสุขภาพเด็กเล็กแรกเกิด
+* **สมุดโค้ดสำหรับการทดลอง (Jupyter Notebook):** [`notebooks/insurance_cost_regression.ipynb`](notebooks/insurance_cost_regression.ipynb) หรือเปิดรันบน [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TibParW/insurance-and-thai-character-ds/blob/main/notebooks/insurance_cost_regression.ipynb)
 
 ---
 
@@ -105,6 +109,7 @@
 * **ข้อจำกัดของแบบจำลอง (Model Limitations):**
   * ออกแบบมาสำหรับจำแนกพยัญชนะเดี่ยว 1 ตัวอักษร ยังไม่รองรับสระ วรรณยุกต์ หรือข้อความต่อเนื่องเป็นประโยค
   * การวาดลายมือบนกระดานควรวาดให้อยู่กึ่งกลางกรอบและมีขนาดพอดี หากวาดมีขนาดเล็กเกินไปอาจส่งผลต่อการตรวจจับขอบ Bounding Box
+* **สมุดโค้ดสำหรับการทดลอง (Jupyter Notebook):** [`notebooks/thai_character_classification.ipynb`](notebooks/thai_character_classification.ipynb) หรือเปิดรันบน [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TibParW/insurance-and-thai-character-ds/blob/main/notebooks/thai_character_classification.ipynb)
 
 ---
 
