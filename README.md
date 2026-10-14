@@ -138,29 +138,23 @@ Running on local URL:  http://127.0.0.1:7860
 
 ---
 
-## 8. ลิงก์สำหรับทดลองใช้งานผ่านอินเทอร์เน็ต (Public Web App URL)
+### 8. ลิงก์ระบบและเว็บแอปพลิเคชัน (Live Application & Repository URLs)
 
-เว็บแอปพลิเคชันสามารถเปิดใช้งานผ่านอินเทอร์เน็ตได้ 2 รูปแบบ:
-
-1. **Gradio Public Link (เปิดแชร์ชั่วคราว):**
-   แก้ไขในบรรทัดสุดท้ายของ `app.py` ให้เป็น:
-   ```python
-   app.launch(share=True)
-   ```
-   ระบบจะสร้าง Public URL รูปแบบ `https://xxxx.gradio.live` ให้อาจารย์ทดลองใช้งานได้ทันที 72 ชั่วโมง
-
-2. **Hugging Face Spaces (โฮสต์ออนไลน์ถาวร):**
-   - URL: `https://huggingface.co/spaces/[username]/thai-character-classifier`
-   - สามารถอัปโหลดไฟล์ `app.py`, `inference.py`, `preprocessing.py`, `labels.py`, `requirements.txt`, `models/` และ `test_images/` ขึ้น Hugging Face Space (Gradio SDK) ได้ฟรีโดยไม่ต้องเปิดเครื่องคอมพิวเตอร์ทิ้งไว้
+* **🌐 1. Image Classification Web App (Thai Character Classifier):**  
+  [https://huggingface.co/spaces/TibParW/thai-character-classifier](https://huggingface.co/spaces/TibParW/thai-character-classifier) *(หรือเปิดผ่าน Local Port 7860)*
+* **🌐 2. Regression Web App (Medical Insurance Cost Predictor):**  
+  [https://huggingface.co/spaces/TibParW/medical-insurance-cost-predictor](https://huggingface.co/spaces/TibParW/medical-insurance-cost-predictor)
+* **🐙 GitHub Repositories:**
+  - Image Classification: [https://github.com/TibParW/thai-character-classifier_read](https://github.com/TibParW/thai-character-classifier_read)
+  - Regression Model: [https://github.com/TibParW/medical-insurance-cost-predictor](https://github.com/TibParW/medical-insurance-cost-predictor)
 
 ---
 
 ## 9. ข้อมูลผู้จัดทำ (Student Information)
 
-| ลำดับ | รหัสนิสิต | ชื่อ - นามสกุล | บทบาทหน้าที่ |
-| :---: | :---: | :---: | :---: |
-| 1 | 6xxxxxxxxx | [ชื่อ - นามสกุล นิสิตคนที่ 1] | เตรียมชุดข้อมูล และเขียน Jupyter Notebook |
-| 2 | 6xxxxxxxxx | [ชื่อ - นามสกุล นิสิตคนที่ 2] | พัฒนา Preprocessing และฝึกสอนแบบจำลอง |
-| 3 | 6xxxxxxxxx | [ชื่อ - นามสกุล นิสิตคนที่ 3] | พัฒนา Gradio Web App และทำเอกสารสรุป |
+> **หมายเหตุ:** เรียงลำดับตามรหัสนิสิตจากน้อยไปมากตามเกณฑ์ข้อกำหนดของรายวิชา
 
-*(เรียงลำดับตามรหัสนิสิตจากน้อยไปมาก)*
+| ลำดับ | รหัสนิสิต | ชื่อ - นามสกุล | สาขาวิชา / ภาควิชา | สถาบันการศึกษา |
+| :---: | :---: | :--- | :--- | :--- |
+| 1 | `6630300866` | นายสกลภัทร | ภาควิชาวิศวกรรมคอมพิวเตอร์ / วิทยาการคอมพิวเตอร์ | มหาวิทยาลัยเกษตรศาสตร์ |
+
