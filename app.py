@@ -149,7 +149,7 @@ with gr.Blocks(title="Web Application", theme=gr.themes.Soft()) as app:
         # ==========================================
         with gr.TabItem("1. Regression Model"):
             gr.Markdown("### ระบบทำนายค่าใช้จ่ายเบี้ยประกันสุขภาพรายปี (Medical Insurance Cost Prediction)")
-            gr.Markdown("ทำนายค่าเบี้ยประกันสุขภาพรายบุคคลจากปัจจัยชีววิทยาและพฤติกรรม ด้วยแบบจำลอง **Gradient Boosting Regressor ($R^2 = 87.92%$)**")
+            gr.Markdown("ทำนายค่าเบี้ยประกันสุขภาพรายบุคคลจากปัจจัยชีววิทยาและพฤติกรรม ด้วยแบบจำลอง **Gradient Boosting Regressor ($R^2 = 96.46%$)**")
 
             with gr.Row():
                 with gr.Column(scale=1):
@@ -182,10 +182,10 @@ with gr.Blocks(title="Web Application", theme=gr.themes.Soft()) as app:
             gr.Markdown("#### ตัวอย่างข้อมูลนำเข้าสำหรับทดสอบ (Examples Presets)")
             gr.Examples(
                 examples=[
-                    [19, "หญิง", 22.5, 0, "ไม่สูบบุหรี่", "ภาคกลาง"],
-                    [38, "ชาย", 28.0, 2, "ไม่สูบบุหรี่", "ภาคเหนือ"],
-                    [45, "ชาย", 35.5, 1, "สูบบุหรี่", "ภาคตะวันออกเฉียงเหนือ"],
-                    [60, "หญิง", 26.0, 0, "ไม่สูบบุหรี่", "ภาคใต้"]
+                    [22, "หญิง", 21.5, 0, "ไม่สูบบุหรี่", "ภาคกลาง"],
+                    [38, "ชาย", 25.5, 2, "ไม่สูบบุหรี่", "ภาคเหนือ"],
+                    [45, "ชาย", 32.0, 1, "สูบบุหรี่", "ภาคตะวันออกเฉียงเหนือ"],
+                    [65, "หญิง", 23.5, 0, "ไม่สูบบุหรี่", "ภาคใต้"]
                 ],
                 inputs=[reg_age, reg_sex, reg_bmi, reg_children, reg_smoker, reg_region],
                 outputs=[reg_out_charges, reg_out_bmi_cat, reg_out_risk],

@@ -37,8 +37,6 @@ def main():
 
     # 1. Load Dataset (Thai Health Insurance Data in THB)
     df = pd.read_csv(data_path)
-    if df["charges"].mean() < 100000:
-        df["charges"] = (df["charges"] * EXCHANGE_RATE).round(2)
 
     print(f"\n[1] Dataset loaded successfully: {df.shape[0]} rows, {df.shape[1]} columns")
     print(f"    Features: {df.columns.tolist()[:6]}")
