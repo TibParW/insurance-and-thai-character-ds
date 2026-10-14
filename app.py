@@ -121,8 +121,9 @@ with gr.Blocks(title="Machine Learning Portal (2-in-1)", theme=gr.themes.Soft())
     gr.HTML("""
     <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%); color: white; padding: 22px 28px; border-radius: 12px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
         <h1 style="color: white; margin: 0 0 6px 0; font-size: 26px; font-weight: 700;">🚀 Machine Learning Web Application (2-in-1 Portal)</h1>
-        <p style="color: #e0e7ff; margin: 0; font-size: 15px;">ระบบบูรณาการแบบจำลอง Machine Learning ครบทั้ง 2 ขอบเขตงาน (Regression & Image Classification)</p>
-        <p style="color: #bfdbfe; margin: 8px 0 0 0; font-size: 13px;">ผู้จัดทำ: <b>นายสกลภัทร (รหัสนิสิต: 6630300866)</b> | ภาควิชาวิศวกรรมคอมพิวเตอร์ / วิทยาการคอมพิวเตอร์ มหาวิทยาลัยเกษตรศาสตร์</p>
+        <p style="color: #bfdbfe; margin: 8px 0 0 0; font-size: 13px;"><b>กลุ่มผู้จัดทำ (ภาควิชาวิศวกรรมคอมพิวเตอร์ / วิทยาการคอมพิวเตอร์ มหาวิทยาลัยเกษตรศาสตร์):</b><br>
+        6630300866 นาย สกลภัทร ภิญโญ • 6730300281 นาย นันทพัฒน์ วรรณลักษณ์ • 6730300591 นาย ศุภวิชญ์ ไชยานุศักดิ์<br>
+        6730300779 นาย ธรรศธรณ์ เจียมตน • 6730300850 นาย พัฒนเดช มะหิเมือง</p>
     </div>
     """)
 
