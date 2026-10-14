@@ -35,7 +35,7 @@ add_markdown("""# Data Science Capstone Project
 - **รายวิชา:** Data Science Capstone Project
 - **โจทย์:** 2.2 Image Classification Model & 3. Web Application (Gradio)
 - **ประเภทโมเดล:** Multiclass Image Classification (44 Classes: ก - ฮ)
-- **สถาปัตยกรรม:** Image Preprocessing Pipeline + Machine Learning Classifiers (Random Forest / Support Vector Machine)
+- **สถาปัตยกรรม:** Image Preprocessing Pipeline +  Classifiers (Random Forest / Support Vector Machine)
 """)
 
 # -------------------------------------------------------------
@@ -54,7 +54,7 @@ add_markdown("""## 1. วัตถุประสงค์และที่ม�
 ### 1.2 เป้าหมายของโครงการ
 1. สร้างชุดข้อมูลพยัญชนะไทย 44 ตัว (ก-ฮ) ที่มีความสมดุล (Balanced Dataset) คลาสละ 100 ภาพ รวม 4,400 ภาพ
 2. พัฒนากระบวนการเตรียมข้อมูลภาพ (Preprocessing Pipeline) เพื่อแปลงภาพลายมือ/ตัวพิมพ์ให้เป็นมาตรฐาน 28×28 พิกเซล
-3. ฝึกสอนและเปรียบเทียบแบบจำลอง Machine Learning (Random Forest และ Support Vector Machine)
+3. ฝึกสอนและเปรียบเทียบแบบจำลอง  (Random Forest และ Support Vector Machine)
 4. ประเมินผลอย่างละเอียดด้วย Accuracy, Macro-averaged F1, Per-class Precision/Recall และ Confusion Matrix พร้อมวิเคราะห์ข้อผิดพลาด
 5. บันทึกแบบจำลองนำไปสร้าง Web Application ด้วย Gradio ที่ให้ผู้ใช้ทดลองอัปโหลดหรือวาดภาพได้จริงผ่านอินเทอร์เน็ต
 """)
@@ -272,7 +272,7 @@ print(f"ตรวจสอบ Test Set: มี {len(test_counts)} คลาส, 
 # -------------------------------------------------------------
 # Cell 11: Model Training
 # -------------------------------------------------------------
-add_markdown("""## 6. การฝึกสอนแบบจำลอง Machine Learning (Model Training & Comparison)
+add_markdown("""## 6. การฝึกสอนแบบจำลอง  (Model Training & Comparison)
 
 เปรียบเทียบ 2 อัลกอริทึมหลักที่เหมาะสมกับข้อมูลพิกเซลภาพ:
 1. **Random Forest Classifier (Ensemble Method):** ใช้ต้นไม้ตัดสินใจ 200 ต้นร่วมกับการโหวตเสียงข้างมาก รองรับการทำงานแบบ Multi-threading เต็มประสิทธิภาพ (`n_jobs=-1`)

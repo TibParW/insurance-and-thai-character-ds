@@ -1,6 +1,6 @@
 """
 Medical Insurance Cost Prediction - Training & Evaluation Script (THB Currency)
-Course: Machine Learning / Data Science
+Course: Data Science
 Author: Sakonlaphat (6630300866) and Group Members
 """
 

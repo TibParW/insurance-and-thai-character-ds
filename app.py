@@ -1,5 +1,5 @@
 """
-Machine Learning Web Application
+Web Application
 - Part 1: Medical Insurance Cost Prediction (Regression Model)
 - Part 2: Thai Character Classifier (Image Classification Model)
 
@@ -127,7 +127,7 @@ def predict_sketch_or_image(image):
 # ============================================================
 # 3. Gradio Web Application
 # ============================================================
-with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft()) as app:
+with gr.Blocks(title="Web Application", theme=gr.themes.Soft()) as app:
     gr.HTML("""
     <style>
     .sketch-container {

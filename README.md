@@ -1,4 +1,4 @@
-# Machine Learning & Data Science Final Project
+# Data Science Final Project
 ### โครงงานพัฒนาแบบจำลองการถดถอย (Regression) และจำแนกประเภทรูปภาพ (Image Classification) พร้อมเว็บแอปพลิเคชัน
 
 ---
@@ -102,7 +102,7 @@
 
 ---
 
-## 3. เว็บแอปพลิเคชัน (Machine Learning Web Application)
+## 3. เว็บแอปพลิเคชัน (Web Application)
 
 ระบบถูกออกแบบให้รองรับทั้งสองแบบจำลอง โดยมีแท็บให้เลือกทดสอบใช้งานได้อย่างสะดวก:
 
