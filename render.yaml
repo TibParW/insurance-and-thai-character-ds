@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: thai-character-classifier
+    name: insurance-and-thai-character-ds
     runtime: python
     plan: free
     region: singapore

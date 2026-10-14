@@ -22,10 +22,10 @@
 ## 🌐 ลิงก์ระบบและเว็บแอปพลิเคชัน (Live Application & Repository)
 
 * **🌐 Live Web Application (Render Cloud - 2-in-1 Portal):**  
-  👉 **[https://thai-character-classifier-read.onrender.com](https://thai-character-classifier-read.onrender.com)**  
+  👉 **[https://insurance-and-thai-character-ds.onrender.com](https://insurance-and-thai-character-ds.onrender.com)**  
   *(สามารถเปิดทดลองใช้งานผ่านอินเทอร์เน็ตได้ตลอด 24 ชั่วโมง โดยมีหน้าจอเลือกสลับใช้งานระหว่าง **Regression App** และ **Image Classification App** ได้ในที่เดียว)*
 * **🐙 GitHub Repository:**  
-  👉 **[https://github.com/TibParW/thai-character-classifier_read](https://github.com/TibParW/thai-character-classifier_read)**
+  👉 **[https://github.com/TibParW/insurance-and-thai-character-ds](https://github.com/TibParW/insurance-and-thai-character-ds)**
 
 ---
 
@@ -131,8 +131,8 @@
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/TibParW/thai-character-classifier_read.git
-cd thai-character-classifier_read
+git clone https://github.com/TibParW/insurance-and-thai-character-ds.git
+cd insurance-and-thai-character-ds
 
 # 2. ติดตั้งแพ็กเกจที่จำเป็น
 pip install -r requirements.txt
