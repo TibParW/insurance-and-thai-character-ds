@@ -1,5 +1,5 @@
 """
-Unified Machine Learning Web Application (2-in-1 Portal)
+Machine Learning Web Application
 - Part 1: Medical Insurance Cost Prediction (Regression Model)
 - Part 2: Thai Character Classifier (Image Classification Model)
 
@@ -116,12 +116,12 @@ def predict_sketch_or_image(image):
 
 
 # ============================================================
-# 3. Unified 2-in-1 Gradio Application
+# 3. Gradio Web Application
 # ============================================================
-with gr.Blocks(title="Machine Learning Portal (2-in-1)", theme=gr.themes.Soft()) as app:
+with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft()) as app:
     gr.HTML("""
     <div style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%); color: white; padding: 22px 28px; border-radius: 12px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-        <h1 style="color: white; margin: 0 0 6px 0; font-size: 26px; font-weight: 700;">🚀 Machine Learning Web Application (2-in-1 Portal)</h1>
+        <h1 style="color: white; margin: 0 0 6px 0; font-size: 26px; font-weight: 700;">🚀 Machine Learning Web Application</h1>
         <p style="color: #bfdbfe; margin: 8px 0 0 0; font-size: 13px;"><b>กลุ่มผู้จัดทำ (ภาควิชาวิศวกรรมคอมพิวเตอร์ / วิทยาการคอมพิวเตอร์ มหาวิทยาลัยเกษตรศาสตร์):</b><br>
         6630300866 นาย สกลภัทร ภิญโญ • 6730300281 นาย นันทพัฒน์ วรรณลักษณ์ • 6730300591 นาย ศุภวิชญ์ ไชยานุศักดิ์<br>
         6730300779 นาย ธรรศธรณ์ เจียมตน • 6730300850 นาย พัฒนเดช มะหิเมือง</p>
@@ -229,7 +229,7 @@ with gr.Blocks(title="Machine Learning Portal (2-in-1)", theme=gr.themes.Soft())
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 7860))
-    print(f"Starting Gradio 2-in-1 web service on 0.0.0.0:{port} ...")
+    print(f"Starting Gradio web service on 0.0.0.0:{port} ...")
     app.launch(
         server_name="0.0.0.0",
         server_port=port,

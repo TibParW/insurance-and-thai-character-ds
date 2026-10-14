@@ -1,4 +1,4 @@
-# 🚀 Machine Learning & Data Science Final Project (2-in-1 Unified Web Application)
+# 🚀 Machine Learning & Data Science Final Project
 ### โครงงานพัฒนาแบบจำลองการถดถอย (Regression) และจำแนกประเภทรูปภาพ (Image Classification) พร้อมเว็บแอปพลิเคชัน
 **รายวิชา:** Machine Learning / Data Science Project | มหาวิทยาลัยเกษตรศาสตร์  
 **ผู้จัดทำ (กลุ่มผู้พัฒนา):** นิสิตชั้นปีที่ 2 - 3 ภาควิชาวิศวกรรมคอมพิวเตอร์ / วิทยาการคอมพิวเตอร์ มหาวิทยาลัยเกษตรศาสตร์
@@ -21,7 +21,7 @@
 
 ## 🌐 ลิงก์ระบบและเว็บแอปพลิเคชัน (Live Application & Repository)
 
-* **🌐 Live Web Application (Render Cloud - 2-in-1 Portal):**  
+* **🌐 Live Web Application (Render Cloud):**  
   👉 **[https://insurance-and-thai-character-ds.onrender.com](https://insurance-and-thai-character-ds.onrender.com)**  
   *(สามารถเปิดทดลองใช้งานผ่านอินเทอร์เน็ตได้ตลอด 24 ชั่วโมง โดยมีหน้าจอเลือกสลับใช้งานระหว่าง **Regression App** และ **Image Classification App** ได้ในที่เดียว)*
 * **🐙 GitHub Repository:**  
@@ -107,9 +107,9 @@
 
 ---
 
-## 💻 3. เว็บแอปพลิเคชันแบบบูรณาการ (Unified 2-in-1 Web Application)
+## 💻 3. เว็บแอปพลิเคชันแบบบูรณาการ (Machine Learning Web Application)
 
-ระบบถูกออกแบบเป็น **2-in-1 Web Portal** โดยมีแท็บให้ผู้ใช้และผู้สอนเลือกทดสอบใช้งานได้อย่างสะดวก:
+ระบบถูกออกแบบให้รองรับทั้งสองแบบจำลอง โดยมีแท็บให้ผู้ใช้และผู้สอนเลือกทดสอบใช้งานได้อย่างสะดวก:
 
 ### 3.1 แท็บที่ 1: Regression App (ทำนายค่าเบี้ยประกันสุขภาพ)
 * **การใช้งาน:** เลื่อนแถบระบุ อายุ, เพศ, BMI, บุตร, การสูบบุหรี่, และภูมิภาค แล้วกดปุ่มทำนาย
@@ -137,7 +137,7 @@ cd insurance-and-thai-character-ds
 # 2. ติดตั้งแพ็กเกจที่จำเป็น
 pip install -r requirements.txt
 
-# 3. รันเว็บแอปพลิเคชัน 2-in-1
+# 3. รันเว็บแอปพลิเคชัน
 python app.py
 ```
 เปิดเบราว์เซอร์ไปที่: `http://localhost:7860`
@@ -147,7 +147,7 @@ python app.py
 ## 📂 5. โครงสร้างไฟล์และโฟลเดอร์สำคัญในโครงการ (Repository Structure)
 
 ```text
-thai_character_classifier_read/
+insurance-and-thai-character-ds/
 │
 ├── data/                                  # โฟลเดอร์ชุดข้อมูลสำหรับฝึกและทดสอบ
 │   ├── insurance.csv                      # [Regression] ชุดข้อมูลค่าใช้จ่ายสุขภาพ (1,338 ตัวอย่าง)
@@ -173,7 +173,7 @@ thai_character_classifier_read/
 │
 ├── fonts/                                 # ฟอนต์พยัญชนะไทยสำหรับ Data Augmentation
 ├── test_images/                           # ภาพตัวอย่างสำหรับทดสอบแอปพลิเคชัน
-├── app.py                                 # ซอร์สโค้ด Gradio 2-in-1 Web Application (หน้าเว็บหลัก)
+├── app.py                                 # ซอร์สโค้ด Gradio Web Application (หน้าเว็บหลัก)
 ├── render.yaml                            # ไฟล์การตั้งค่า Deployment บน Render Cloud
 ├── requirements.txt                       # รายการไลบรารีที่จำเป็นทั้งหมด
 └── README.md                              # เอกสารสรุปโครงการฉบับสมบูรณ์
@@ -186,5 +186,5 @@ thai_character_classifier_read/
 - [x] **Jupyter Notebooks ครบทั้ง 2 เล่ม:** มีคำอธิบาย EDA, Split, Train, Evaluate, Error Analysis, และ Save Model สามารถรันได้ตามลำดับ
 - [x] **ชุดข้อมูลครบถ้วน:** มี `insurance.csv` และ `thai_characters/` บันทึกอยู่บน GitHub
 - [x] **โมเดลที่บันทึกไว้จริง:** มีทั้ง `insurance_model.joblib` และ `thai_cnn_classifier.pt`
-- [x] **Web Application 2-in-1:** หน้าเดียวรองรับทั้งสองแบบจำลอง แสดงผลการทำนายพร้อมหน่วยชัดเจน
-- [x] **ข้อมูลผู้จัดทำ:** ระบุชื่อ-นามสกุล และรหัสนิสิต (`6630300866`) ถูกต้องตามเกณฑ์
+- [x] **Web Application:** หน้าเดียวรองรับทั้งสองแบบจำลอง แสดงผลการทำนายพร้อมหน่วยชัดเจน
+- [x] **ข้อมูลผู้จัดทำ:** ระบุชื่อ-นามสกุล และรหัสนิสิตทั้ง 5 คน เรียงลำดับถูกต้องตามเกณฑ์
