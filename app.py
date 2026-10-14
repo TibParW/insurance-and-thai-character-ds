@@ -147,7 +147,7 @@ with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft())
         # ==========================================
         # TAB 1: REGRESSION MODEL
         # ==========================================
-        with gr.TabItem("1. Regression Model (ทำนายค่าเบี้ยประกันสุขภาพ)"):
+        with gr.TabItem("1. Regression Model"):
             gr.Markdown("### ระบบทำนายค่าใช้จ่ายเบี้ยประกันสุขภาพรายปี (Medical Insurance Cost Prediction)")
             gr.Markdown("ทำนายค่าเบี้ยประกันสุขภาพรายบุคคลจากปัจจัยชีววิทยาและพฤติกรรม ด้วยแบบจำลอง **Gradient Boosting Regressor ($R^2 = 87.92%$)**")
 
@@ -196,7 +196,7 @@ with gr.Blocks(title="Machine Learning Web Application", theme=gr.themes.Soft())
         # ==========================================
         # TAB 2: IMAGE CLASSIFICATION MODEL
         # ==========================================
-        with gr.TabItem("2. Image Classification Model (จำแนกพยัญชนะไทย ก - ฮ)"):
+        with gr.TabItem("2. Image Classification Model"):
             gr.Markdown("### ระบบจำแนกพยัญชนะภาษาไทย 44 รูป (Thai Character Classifier)")
             gr.Markdown("จำแนกตัวอักษรไทยทั้งจากลายมือเขียนและภาพถ่าย ด้วยแบบจำลอง **Deep CNN (Test Accuracy 99.14%, Macro F1 0.9912)**")
 
